@@ -14,10 +14,8 @@
 Route::get('/users/', function () {
     return view('welcome');
 });    
-Route::get('/users/comments',function() {
-	return response() ->json([
-		'name'=> 'Abigail',
-		'state'=>'CA'
-	]);
-});
+//  làm sao trỏ route về controller gọi eloquent class
+Route::get('/users/comments', 'UserController@returnComment');
+Route::get('/users/listBuyers','UserController@returnBuyers');
+Route::get('/users/listSellers','UserController@returnSellers');
 

@@ -3,19 +3,36 @@
 namespace App\Eloquent;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\User;
 
 class User extends Model
 {
     //
+    protected $hidden =['created_at','updated_at','delected_at'];
+    
     public function getComments()
     {
 
-    	return $this->hasMany('app\Eloquent\Comment','foreign_key');
+    	return $this->hasMany('App\Eloquent\Comment');
     }
 
-    $User = app\Eloquent\User::find(1);
-    $User ->post()->where('active',1)->get();
+    public static function returnData()
+    {
 
-    $post =App\Post::has('comments')->get();
+    	return static::with('getComments')->where('status', '=', 1)->get();	
+    }
+    // query the role of user 
+    public function getRole()
+    {
+        return $this->hasOne('App\Eloquent\Role');
+    }
+    public static function returnBuyerRole()
+    {
+        return static::with('getRole')->
+            where('role_id','=',2)->get();
+    }
+    public static function returnSellerRole()
+    {
+        return static::with('getRole')->
+            where('role_id','=',3)->get();
+    }
 }

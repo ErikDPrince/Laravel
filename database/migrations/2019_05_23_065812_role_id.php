@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Users extends Migration
+class RoleId extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,10 @@ class Users extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email');
-            $table->string('name');
-            $table->tinyInteger('status');
-            $table->engine='InnoDB';  
-            $table->timestamps();
+    {  // table user
+        Schema::table('users', function (Blueprint $table) {
+            $table->tinyInteger('role_id');
+            $table->foreign('role_id')->references('id')->on('roles');   
         });
     }
 
@@ -30,6 +26,8 @@ class Users extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 }
