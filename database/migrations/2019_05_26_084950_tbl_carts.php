@@ -4,22 +4,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Roles extends Migration
+class TblCarts extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
-     */protected $dateFormat = "U";
+     */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 128);
-            $table->engine='InnoDB';
-            $table->timestamps();            
+        Schema::create('carts', function (Blueprint $table) {
+            $table->increments('cart_id');
+            $table->integer('buyer_id');
+            $table->string('code',10);//ex: HGB653F4F
+            $table->tinyInteger('cart_status');
+            $table->timestamps();
         });
-        Carbon::
     }
 
     /**
@@ -29,6 +29,6 @@ class Roles extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('carts');
     }
 }

@@ -14,7 +14,7 @@ class RoleId extends Migration
     public function up()
     {  // table user
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('role_id');
+            
             $table->foreign('role_id')->references('id')->on('roles');   
         });
     }

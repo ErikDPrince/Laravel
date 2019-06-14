@@ -10,7 +10,7 @@ class Comments extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+     */protected $dateFormat = "U";
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {

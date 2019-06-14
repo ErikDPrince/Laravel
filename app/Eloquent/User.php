@@ -23,16 +23,14 @@ class User extends Model
     // query the role of user 
     public function getRole()
     {
-        return $this->hasOne('App\Eloquent\Role');
+        return $this->belongsTo('App\Eloquent\Role', 'role_id');
     }
     public static function returnBuyerRole()
     {
-        return static::with('getRole')->
-            where('role_id','=',2)->get();
+        return static::with('getRole')->where('role_id','=', 2)->get();
     }
     public static function returnSellerRole()
     {
-        return static::with('getRole')->
-            where('role_id','=',3)->get();
+        return static::with('getRole')->where('role_id','=', 3)->get();
     }
 }
